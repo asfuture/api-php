@@ -1,0 +1,18 @@
+version: '3.9'
+services:
+  php-apache:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    container_name: api-php
+
+  db:
+    image: mysql:5.7
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: api_db
+    ports:
+      - "3307:3306"  # Porta externa 3307 mapeada para a porta interna 3306
